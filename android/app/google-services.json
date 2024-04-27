@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "890235155837",
+    "project_id": "basicapp-2ab42",
+    "storage_bucket": "basicapp-2ab42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890235155837:android:d6add50ddb102ff1424814",
+        "android_client_info": {
+          "package_name": "com.firebasecrudapp.flutter_firebase_crud_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD39haZjWSVbggWs8Coek8sI9HyIzeYYAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
