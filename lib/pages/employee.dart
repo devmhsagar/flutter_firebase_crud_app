@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_crud_app/services/database.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:random_string/random_string.dart';
 
 class Employee extends StatefulWidget {
   const Employee({super.key});
@@ -8,6 +11,10 @@ class Employee extends StatefulWidget {
 }
 
 class _EmployeeState extends State<Employee> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController locationController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,8 +59,9 @@ class _EmployeeState extends State<Employee> {
                   border: Border.all(color: Colors.black),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: TextField(
+                  controller: nameController,
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                   ),
                 ),
@@ -73,8 +81,9 @@ class _EmployeeState extends State<Employee> {
                   border: Border.all(color: Colors.black),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: TextField(
+                  controller: ageController,
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                   ),
                 ),
@@ -94,8 +103,9 @@ class _EmployeeState extends State<Employee> {
                   border: Border.all(color: Colors.black),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: TextField(
+                  controller: locationController,
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                   ),
                 ),
@@ -103,7 +113,27 @@ class _EmployeeState extends State<Employee> {
               const SizedBox(height: 30),
               Center(
                   child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  String Id = randomAlphaNumeric(10);
+                  Map<String, dynamic> employeeInfoMap = {
+                    "Name": nameController.text,
+                    "Age": ageController.text,
+                    "Id": Id,
+                    "Location": locationController.text
+                  };
+                  await DatabaseMethods()
+                      .addEmployeeDetails(employeeInfoMap, Id)
+                      .then((value) {
+                    Fluttertoast.showToast(
+                        msg: "Employee Added",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  });
+                },
                 child: const Text(
                   "Add",
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
