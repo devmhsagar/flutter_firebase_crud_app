@@ -14,7 +14,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       floatingActionButton:  FloatingActionButton(onPressed: () {
        Navigator.push(context, MaterialPageRoute(builder: (context) => Employee()));
-      }),
+      }, child:  const Icon(Icons.add,)),
       appBar: AppBar(
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
